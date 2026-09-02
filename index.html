@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosas que me recuerdan a ti 💌</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="main-layout">
+        
+        <!-- ================= COLUMNA IZQUIERDA: LOS 4 BOTONES DE CARTAS ================= -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">
+                <span class="tag">Mi Buzón</span>
+                <h2>Recuerdos 🤍</h2>
+                <p>Selecciona una cartita</p>
+            </div>
+
+            <div class="cards-grid-sidebar">
+                <!-- Carta 1: Videojuegos (Tiene 2 imágenes) -->
+                <button class="letter-card-btn active" data-target="carta1">
+                    <span class="card-icon">🎮</span>
+                    <span class="card-title">Cuando jugamos videojuegos</span>
+                </button>
+
+                <!-- Carta 2: Música bonita -->
+                <button class="letter-card-btn" data-target="carta2">
+                    <span class="card-icon">🎶</span>
+                    <span class="card-title">Al escuchar música bonita</span>
+                </button>
+
+                <!-- Carta 3: Películas de terror -->
+                <button class="letter-card-btn" data-target="carta3">
+                    <span class="card-icon">🎬</span>
+                    <span class="card-title">Viendo pelis de terror</span>
+                </button>
+
+                <!-- Carta 4: Pensar en él acostado -->
+                <button class="letter-card-btn" data-target="carta4">
+                    <span class="card-icon">💭</span>
+                    <span class="card-title">Antes de dormir</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= COLUMNA DERECHA: PANTALLA DE INFORMACIÓN ================= -->
+        <div class="right-content-panel">
+            
+            <!-- Contador de tiempo superior -->
+            <div class="info-card counter-card">
+                <h3>⏱️ Nuestro tiempo juntos</h3>
+                <div id="counter">Calculando momentos...</div>
+            </div>
+
+            <!-- Panel donde cambia la información según la carta seleccionada -->
+            <div class="info-card display-card">
+                
+                <!-- CARTA 1 -->
+                <div class="content-pane active-pane" id="carta1">
+                    <h3>🎮 Videojuegos</h3>
+                    <p class="handwritten-text">"Me acuerdo de ti cada vez que jugamos y platicamos por horas, sin duda me la paso increíble compartiendo momentos así contigo."</p>
+                    <div class="double-img-frame">
+                        <img src="images/fotojuego.jpeg" alt="Recuerdo 1 - Parte A">
+                        <img src="images/foto1.jpg" alt="Recuerdo 1 - Parte B">
+                    </div>
+                </div>
+
+               <div class="content-pane" id="carta2">
+                    <h3>🎶 Al escuchar música bonita</h3>
+                    <p class="handwritten-text">"Hay canciones que suenan y automáticamente pienso en ti, en tus pláticas y en lo mucho que gustaría estar a tu lado."</p>
+                    
+                    <div class="triple-img-frame">
+                        <img src="images/musica1.jpeg" alt="Canción 1">
+                        <img src="images/musica2.jpeg" alt="Canción 2">
+                        <img src="images/musica3.jpeg" alt="Canción 3">
+                    </div>
+
+                    <a href="https://open.spotify.com/playlist/58lTkAczyCamI6w68VBUKx?si=KwWoGe0wRruUcgu0gqG-pw&utm_source=copy-link&pi=WupDKWzWT5ekM" target="_blank" class="spotify-btn">
+                        🎧 Más canciones que me recuerdan a ti
+                    </a>
+                </div>
+
+                <!-- CARTA 3 -->
+                <div class="content-pane" id="carta3">
+                    <h3>🎬 Viendo pelis de terror</h3>
+                    <p class="handwritten-text">"Me encanta compartir contigo ese gusto por las pelis de terror, aunque te den miedo jajaja, me encanta poder abrazarte,
+                        besarte y sentirte cuando estamos juntos, y esa es una de las cosas que siempre me harán recordarte."</p>
+                    <!-- Aquí puedes poner otra foto o cambiar el nombre si gustas -->
+                    <div class="single-img-frame">
+                        <img src="images/imagen1.jpeg" alt="Recuerdo de terror">
+                    </div>
+                </div>
+
+            <!-- CARTA 4: Antes de dormir (Con video) -->
+                <div class="content-pane" id="carta4">
+                    <h3>💭 Antes de dormir (Acostado)</h3>
+                    <p class="handwritten-text">"Cuando ya estoy acostado en mi cama, cierro los ojos y pienso en lo bonito que sería que estuvieras aquí a mi lado,
+                        abrazaditos, besandonosss y siendo muy felicess."</p>
+                    
+                    <!-- Marco para el video -->
+                    <div class="video-frame">
+                        <video controls autoplay muted loop playsinline>
+                            <source src="images/video1.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="info-card question-card">
+                <h3>¿Sabes lo mucho que te quiero? 🥰</h3>
+                <div class="buttons-container">
+                    <button id="yes-btn" class="primary-btn">¡Chi!</button>
+                    <button id="no-btn" class="secondary-btn">¡NO Alv!...</button>
+                </div>
+                <p id="response-msg"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

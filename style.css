@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    /* Fondo pastel suave y romántico (degradado lila/rosa con puntitos sutiles) */
+    background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #e0f2fe 100%);
+    background-image: radial-gradient(rgba(244, 114, 182, 0.15) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #4b5563;
+}
+
+/* Layout principal de dos columnas */
+.main-layout {
+    display: flex;
+    gap: 25px;
+    max-width: 950px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* ================= COLUMNA IZQUIERDA ================= */
+.left-sidebar {
+    width: 320px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(244, 114, 182, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.08);
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(244, 114, 182, 0.15);
+}
+
+.tag {
+    background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(244, 114, 182, 0.3);
+}
+
+.sidebar-header h2 {
+    font-size: 1.25rem;
+    color: #831843;
+    margin-top: 8px;
+    margin-bottom: 2px;
+}
+
+.sidebar-header p {
+    font-size: 0.75rem;
+    color: #9d174d;
+    opacity: 0.8;
+}
+
+.cards-grid-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Botones en forma de carta del lado izquierdo (Tonos pastel) */
+.letter-card-btn {
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid #fbcfe8;
+    border-radius: 14px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+}
+
+.letter-card-btn:hover {
+    background: #fdf2f8;
+    border-color: #f472b6;
+    transform: translateX(4px);
+}
+
+.letter-card-btn.active {
+    background: linear-gradient(135deg, #fbcfe8 0%, #f472b6 100%);
+    border-color: #db2777;
+    box-shadow: 0 6px 15px rgba(244, 114, 182, 0.3);
+}
+
+.letter-card-btn.active .card-title {
+    color: #831843;
+}
+
+.card-icon {
+    font-size: 1.4rem;
+}
+
+.card-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #57534e;
+}
+
+/* ================= COLUMNA DERECHA ================= */
+.right-content-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(244, 114, 182, 0.2);
+    border-radius: 20px;
+    padding: 18px 20px;
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.08);
+}
+
+/* Tarjeta contador con toque lila/dorado suave */
+.counter-card {
+    text-align: center;
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    border-color: #ddd6fe;
+}
+
+.counter-card h3 {
+    color: #6d28d9;
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+    font-weight: 700;
+}
+
+#counter {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #5b21b6;
+}
+
+/* Panel de visualización de contenido derecho (Estilo papel de carta con tono cálido) */
+.display-card {
+    background: #fffdf9;
+    color: #2d2327;
+    border: 2px solid #fbcfe8;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.02), 0 15px 35px rgba(236, 72, 153, 0.08);
+}
+
+.content-pane {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.content-pane.active-pane {
+    display: flex;
+}
+
+.content-pane h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    color: #9d174d;
+    font-weight: 800;
+}
+
+.handwritten-text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.45rem;
+    line-height: 1.35;
+    color: #44403c;
+    max-width: 90%;
+}
+
+/* Marcos para fotos individuales o dobles con detalles pastel */
+.single-img-frame {
+    width: 100%;
+    max-width: 240px;
+    height: 140px;
+    border: 2px dashed #f472b6;
+    border-radius: 12px;
+    padding: 5px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+}
+
+.single-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.double-img-frame {
+    width: 100%;
+    max-width: 280px;
+    height: 140px;
+    border: 2px dashed #f472b6;
+    border-radius: 12px;
+    padding: 5px;
+    background: #ffffff;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+}
+
+.double-img-frame img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Tarjeta pregunta final */
+.question-card {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.question-card h3 {
+    font-size: 0.9rem;
+    color: #831843;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+./* Contenedor de botones ordenado y disperso */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacio cómodo entre los dos botones */
+    margin-top: 10px;
+    min-height: 50px;
+}
+
+/* Botón principal rosa amor */
+.primary-btn {
+    background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.82rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(244, 114, 182, 0.4);
+    transition: transform 0.2s ease;
+    z-index: 2;
+}
+
+.primary-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Botón secundario ("Mmm...") separado y libre al moverse */
+.secondary-btn {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: transform 0.15s ease-out;
+    z-index: 3;
+}
+
+/* Mensaje de respuesta con toque verde agua (Mint) súper fresco */
+#response-msg {
+    margin-top: 10px;
+    font-weight: 800;
+    color: #0d9488; /* Verde agua / esmeralda suave */
+    font-size: 0.85rem;
+}
+
+/* Responsivo para celulares */
+@media (max-width: 850px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .left-sidebar {
+        width: 100%;
+    }
+}
+/* Marco especial para 3 imágenes en la sección de música */
+.triple-img-frame {
+    width: 100%;
+    max-width: 300px;
+    height: 120px;
+    border: 2px dashed #f472b6;
+    border-radius: 12px;
+    padding: 4px;
+    background: #ffffff;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+}
+
+.triple-img-frame img {
+    width: calc(33.333% - 4px);
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Botón especial para Spotify */
+.spotify-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #1db954 0%, #169341 100%); /* Verde característico de Spotify pero adaptado */
+    color: white;
+    text-decoration: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 4px;
+}
+
+.spotify-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 16px rgba(29, 185, 84, 0.4);
+}
+/* Marco especial para videos en la carta 4 */
+.video-frame {
+    width: 100%;
+    max-width: 260px;
+    height: 150px;
+    border: 2px dashed #f472b6;
+    border-radius: 12px;
+    padding: 4px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(244, 114, 182, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
