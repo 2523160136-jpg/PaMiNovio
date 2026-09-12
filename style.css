@@ -377,3 +377,28 @@ body {
     object-fit: cover;
     border-radius: 8px;
 }
+/* Agrega estos estilos en tu archivo style.css */
+.extra-redirect-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 18px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    color: #5d4037;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(238, 156, 167, 0.25);
+    transition: all 0.3s ease;
+}
+
+.extra-redirect-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(238, 156, 167, 0.4);
+    background: linear-gradient(135deg, #ffccd5, #e68593);
+}
