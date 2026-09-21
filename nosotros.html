@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #fce4ec 50%, #f3e5f5 100%);
-            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(255, 255, 255, 0.95);
             --primary-pink: #e91e63;
             --accent-teal: #00897b;
@@ -33,33 +33,27 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            cursor: pointer; /* Indica que la pantalla es interactiva para soltar corazones */
         }
 
-        /* CAPA DE CORAZONES FLOTANTES (Fondo interactivo animado) */
-        .floating-heart {
+        /* EFECTO DE CORAZONES AL TOCAR LA PANTALLA */
+        .touch-heart {
             position: fixed;
-            bottom: -50px;
-            font-size: 1.8rem;
+            font-size: 2rem;
             user-select: none;
             pointer-events: none;
-            z-index: 9999;
-            animation: floatUpAnimation 5s linear forwards;
-            filter: drop-shadow(0 2px 6px rgba(233, 30, 99, 0.3));
+            z-index: 99999;
+            animation: burstHeart 1s ease-out forwards;
+            filter: drop-shadow(0 2px 8px rgba(233, 30, 99, 0.4));
         }
 
-        @keyframes floatUpAnimation {
+        @keyframes burstHeart {
             0% {
-                transform: translateY(0) scale(0.5) rotate(0deg);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.9;
-            }
-            85% {
-                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+                opacity: 1;
             }
             100% {
-                transform: translateY(-110vh) scale(1.3) rotate(360deg);
+                transform: translate(-50%, -120px) scale(1.4) rotate(25deg);
                 opacity: 0;
             }
         }
@@ -276,7 +270,7 @@
         <!-- Encabezado Estético -->
         <header class="hero-header">
             <h1>Fotitos de nosotros 🤍</h1>
-            <p>Cada instante a tu lado se convierte en mi recuerdo favorito.</p>
+            <p>Toca cualquier parte de la pantalla para ver la magia ✨</p>
         </header>
 
         <!-- Bloques de Recuerdos -->
@@ -342,35 +336,37 @@
 
     </div>
 
-    <!-- Script automático para generar corazoncitos y destellos flotantes por toda la pantalla -->
+    <!-- Script interactivo: Cada vez que toque la pantalla o mueva el dedo en el iPhone, salen corazones flotantes -->
     <script>
-        function spawnFloatingHeart() {
+        const symbols = ['❤️', '💖', '🤍', '✨', '💕', '💗'];
+
+        function createTouchHeart(x, y) {
             const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-            
-            const symbols = ['❤️', '💖', '🤍', '✨', '💕', '💗'];
+            heart.classList.add('touch-heart');
             heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
             
-            // Posición horizontal aleatoria de lado a lado en la pantalla
-            heart.style.left = Math.random() * 95 + 'vw';
-            
-            // Tamaño aleatorio para dar profundidad
-            heart.style.fontSize = (Math.random() * 1.2 + 1) + 'rem';
-            
-            // Duración aleatoria (entre 4 y 7 segundos) para que fluyan de forma fluida y natural
-            const duration = Math.random() * 3 + 4;
-            heart.style.animationDuration = duration + 's';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
             
             document.body.appendChild(heart);
 
-            // Se elimina del DOM al terminar su trayecto para mantener el rendimiento impecable
             setTimeout(() => {
                 heart.remove();
-            }, duration * 1000);
+            }, 1000);
         }
 
-        // Lanza un nuevo corazoncito cada 350 milisegundos de manera continua
-        setInterval(spawnFloatingHeart, 350);
+        // Detecta clics en computadora
+        window.addEventListener('click', (e) => {
+            createTouchHeart(e.clientX, e.clientY);
+        });
+
+        // Detecta toques en la pantalla del iPhone de forma fluida
+        window.addEventListener('touchstart', (e) => {
+            if(e.touches.length > 0) {
+                const touch = e.touches[0];
+                createTouchHeart(touch.clientX, touch.clientY);
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
