@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Momentos 🤍</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #fce4ec 50%, #f3e5f5 100%);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --primary-color: #d81b60;
-            --secondary-color: #00897b;
-            --text-main: #4a4a4a;
-            --accent-pink: #ff80ab;
-            --pastel-mint: #e0f2f1;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --primary-pink: #e91e63;
+            --accent-teal: #00897b;
+            --text-color: #374151;
+            --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
         }
 
         * {
@@ -25,201 +25,246 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg-gradient);
+            background-attachment: fixed;
             min-height: 100vh;
-            color: var(--text-main);
-            padding: 30px 15px;
+            color: var(--text-color);
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
-        .main-container {
+        .page-wrapper {
             width: 100%;
-            max-width: 750px;
-            margin: 0 auto;
+            max-width: 800px;
         }
 
-        /* Botón de regreso flotante / superior */
+        /* Botón flotante de regreso */
+        .back-nav {
+            margin-bottom: 25px;
+        }
+
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
-            background: #ffffff;
-            color: var(--primary-color);
-            padding: 10px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            color: var(--primary-pink);
+            padding: 12px 24px;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .back-btn:hover {
-            background: var(--primary-color);
-            color: #ffffff;
-            transform: translateY(-2px);
+            background: var(--primary-pink);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.25);
         }
 
-        /* Encabezado principal */
-        .header-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 35px 20px;
-            border-radius: 24px;
+        /* Encabezado Principal Tipo Hero */
+        .hero-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            padding: 45px 30px;
+            border-radius: 32px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header-section h1 {
+        .hero-header::after {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .hero-header h1 {
             font-family: 'Caveat', cursive;
-            font-size: 3.2rem;
-            color: var(--primary-color);
-            margin-bottom: 8px;
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            line-height: 1;
         }
 
-        .header-section p {
-            font-size: 1.05rem;
-            color: #6c757d;
+        .hero-header p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            font-weight: 500;
         }
 
-        /* Línea del tiempo de recuerdos */
-        .timeline {
+        /* Contenedor de la línea del tiempo / galería */
+        .memories-container {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
         }
 
-        .memory-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.3s ease;
+        /* Tarjeta de Recuerdo Estilo Polaroid / Moderna */
+        .memory-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .memory-card:hover {
-            transform: translateY(-3px);
+        .memory-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
         }
 
-        .memory-header {
+        .memory-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .memory-title {
-            font-size: 1.2rem;
+        .memory-label {
+            font-size: 1.3rem;
             font-weight: 800;
-            color: #374151;
+            color: #1f2937;
         }
 
-        .memory-date {
-            font-size: 0.85rem;
-            background: #fce4ec;
-            color: var(--primary-color);
-            padding: 4px 10px;
+        .memory-badge {
+            font-size: 0.8rem;
+            background: #e0f2f1;
+            color: var(--accent-teal);
+            padding: 6px 14px;
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .memory-text {
+        .memory-quote {
             font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
-            color: #5d4037;
-            margin-bottom: 18px;
-            line-height: 1.4;
+            font-size: 1.6rem;
+            color: #4b5563;
+            margin-bottom: 22px;
+            line-height: 1.3;
         }
 
-        /* Contenedores multimedia (Fotos y Videos) */
-        .media-grid {
+        /* Grid de Multimedia (Fotos y Videos con diseño limpio) */
+        .media-grid-modern {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
         }
 
-        .media-item {
-            border-radius: 14px;
+        .media-slot {
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            background: #000;
-            aspect-ratio: 4 / 3;
+            background: #fff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            aspect-ratio: 4 / 5;
+            position: relative;
         }
 
-        .media-item img, 
-        .media-item video {
+        .media-slot.video-slot {
+            aspect-ratio: 16 / 9;
+            grid-column: 1 / -1;
+        }
+
+        .media-slot img, 
+        .media-slot video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .media-item:hover img {
-            transform: scale(1.05);
+        .media-slot:hover img {
+            transform: scale(1.06);
         }
 
-        /* Pie de página romántico */
-        .footer-banner {
+        /* Pie de página estético */
+        .footer-message {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px 20px;
             font-family: 'Caveat', cursive;
-            font-size: 2rem;
-            color: var(--primary-color);
+            font-size: 2.4rem;
+            color: var(--primary-pink);
+            text-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
+        }
+
+        /* Responsive para iPhone */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+            .hero-header h1 {
+                font-size: 3.2rem;
+            }
+            .memory-box {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
+    <div class="page-wrapper">
+        
         <!-- Botón para regresar -->
-        <a href="index.html" class="back-btn">
-            ← Volver al buzón
-        </a>
-
-        <!-- Encabezado -->
-        <div class="header-section">
-            <h1>Nuestros Momentos 🤍</h1>
-            <p>Una pequeña galería de los recuerdos que guardo en mi corazón.</p>
+        <div class="back-nav">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Volver al buzón
+            </a>
         </div>
 
-        <!-- Línea del tiempo de momentos (Aquí puedes agregar o quitar tarjetas según tus recuerdos) -->
-        <div class="timeline">
+        <!-- Encabezado Estético -->
+        <header class="hero-header">
+            <h1>Fotitos de nosotros 🤍</h1>
+            <p>Cada instante a tu lado se convierte en mi recuerdo favorito.</p>
+        </header>
+
+        <!-- Bloques de Recuerdos -->
+        <div class="memories-container">
             
-            <!-- Recuerdo 1: Fotos dobles o múltiples -->
-            <div class="memory-card">
-                <div class="memory-header">
-                    <span class="memory-title">✨ Risas y pláticas infinitas</span>
-                    <span class="memory-date">Momentos top</span>
+            <!-- Recuerdo 1 -->
+            <div class="memory-box">
+                <div class="memory-info">
+                    <span class="memory-label">✨ Nuestros mejores momentos</span>
+                    <span class="memory-badge">Inseparables</span>
                 </div>
-                <p class="memory-text">"Cada vez que estamos juntos el tiempo vuela. No importa lo que hagamos, siempre me haces sonreír."</p>
+                <p class="memory-quote">"No importa el lugar ni el momento, lo único que sé es que a tu lado todo es perfecto y me haces sumamente feliz."</p>
                 
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/nosotros1.jpeg" alt="Recuerdo juntos 1">
+                <div class="media-grid-modern">
+                    <div class="media-slot">
+                        <img src="images/nosotros1.jpeg" alt="Recuerdo 1">
                     </div>
-                    <div class="media-item">
-                        <img src="images/nosotros2.jpeg" alt="Recuerdo juntos 2">
+                    <div class="media-slot">
+                        <img src="images/nosotros2.jpeg" alt="Recuerdo 2">
                     </div>
                 </div>
             </div>
 
-            <!-- Recuerdo 2: Espacio con un Video -->
-            <div class="memory-card">
-                <div class="memory-header">
-                    <span class="memory-title">🎥 Un videito especial</span>
-                    <span class="memory-date">Inolvidable</span>
+            <!-- Recuerdo 2 (Espacio para Video) -->
+            <div class="memory-box">
+                <div class="memory-info">
+                    <span class="memory-label">🎥 Un cachito de nosotros</span>
+                    <span class="memory-badge">Favorito</span>
                 </div>
-                <p class="memory-text">"De esos pequeños clips que veo cuando quiero revivir lo bonito que se siente estar a tu lado."</p>
+                <p class="memory-quote">"De esos videitos que veo una y otra vez porque me transmiten toda la paz y la alegría del mundo."</p>
                 
-                <div class="media-grid">
-                    <div class="media-item" style="grid-column: 1 / -1; max-height: 350px;">
+                <div class="media-grid-modern">
+                    <div class="media-slot video-slot">
                         <video controls autoplay muted loop playsinline>
                             <source src="images/video_nosotros.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
@@ -228,26 +273,28 @@
                 </div>
             </div>
 
-            <!-- Recuerdo 3: Otra tarjeta de fotos -->
-            <div class="memory-card">
-                <div class="memory-header">
-                    <span class="memory-title">💖 Nuestro amor bonito</span>
-                    <span class="memory-date">Por más momentos así</span>
+            <!-- Recuerdo 3 -->
+            <div class="memory-box">
+                <div class="memory-info">
+                    <span class="memory-label">💖 Amor del bueno</span>
+                    <span class="memory-badge">Siempre tú</span>
                 </div>
-                <p class="memory-text">"Gracias por cada detalle, por cada abrazo y por ser mi persona favorita en todo el mundo."</p>
+                <p class="memory-quote">"Gracias por tus abrazos, por tus risas y por ser esa persona especial con la que quiero compartir todo."</p>
                 
-                <div class="media-grid">
-                    <div class="media-item">
-                        <img src="images/nosotros3.jpeg" alt="Recuerdo juntos 3">
+                <div class="media-grid-modern">
+                    <div class="media-slot" style="grid-column: 1 / -1; aspect-ratio: 16/9;">
+                        <img src="images/nosotros3.jpeg" alt="Recuerdo 3">
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="footer-banner">
-            "Te amo muchísimo, hoy y siempre ✨"
+        <!-- Pie de página -->
+        <div class="footer-message">
+            "Te amo muchísimo, hoy, mañana y siempre ✨"
         </div>
+
     </div>
 
 </body>
