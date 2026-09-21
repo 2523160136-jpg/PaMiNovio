@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotitos de nosotros 📸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fce4ec;
+            --card-bg: #ffffff;
+            --primary-color: #d81b60;
+            --text-main: #4a4a4a;
+            --accent-pink: #ff80ab;
+            --pastel-mint: #e0f2f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #e0f2f1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .container {
+            background: var(--card-bg);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            background: #f8bbd0;
+            color: #880e4f;
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #f48fb1;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .photo-card {
+            background: #fff;
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 2px dashed #ff80ab;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: scale(1.03);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .footer-note {
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #880e4f;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Botón para regresar a las cartitas -->
+        <a href="index.html" class="back-btn">← Volver</a>
+
+        <h1>Fotitos de nosotros 🤍</h1>
+        <p class="subtitle">Cada momento a tu lado es mi favorito.</p>
+
+        <!-- Galería de fotos (puedes cambiar los nombres de las imágenes por las tuyas) -->
+        <div class="photos-grid">
+            <div class="photo-card">
+                <img src="images/nosotros1.jpeg" alt="Nosotros 1">
+            </div>
+            <div class="photo-card">
+                <img src="images/nosotros2.jpeg" alt="Nosotros 2">
+            </div>
+            <div class="photo-card">
+                <img src="images/nosotros3.jpeg" alt="Nosotros 3">
+            </div>
+        </div>
+
+        <div class="footer-note">
+            "Te amo muchísimo infinito y más allá ✨"
+        </div>
+    </div>
+
+</body>
+</html>
