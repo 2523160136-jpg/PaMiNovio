@@ -33,7 +33,7 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
-            cursor: pointer; /* Indica que la pantalla es interactiva para soltar corazones */
+            cursor: pointer;
         }
 
         /* EFECTO DE CORAZONES AL TOCAR LA PANTALLA */
@@ -286,10 +286,10 @@
                 
                 <div class="media-grid-modern">
                     <div class="media-slot">
-                        <img src="images/Momento1.jpeg" alt="Recuerdo 1">
+                        <img src="images/nosotros1.jpeg" alt="Recuerdo 1">
                     </div>
                     <div class="media-slot">
-                        <img src="images/Momento2.jpeg" alt="Recuerdo 2">
+                        <img src="images/nosotros2.jpeg" alt="Recuerdo 2">
                     </div>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                 </div>
             </div>
 
-            <!-- Recuerdo 3 -->
+            <!-- Recuerdo 3: Actualizado con 3 imágenes -->
             <div class="memory-box">
                 <div class="memory-info">
                     <span class="memory-label">💖 Amor del bueno</span>
@@ -321,8 +321,14 @@
                 <p class="memory-quote">"Gracias por tus abrazos, por tus risas y por ser esa persona especial con la que quiero compartir todo."</p>
                 
                 <div class="media-grid-modern">
-                    <div class="media-slot" style="grid-column: 1 / -1; aspect-ratio: 16/9;">
+                    <div class="media-slot">
                         <img src="images/nosotros3.jpeg" alt="Recuerdo 3">
+                    </div>
+                    <div class="media-slot">
+                        <img src="images/nosotros4.jpeg" alt="Recuerdo 4">
+                    </div>
+                    <div class="media-slot">
+                        <img src="images/nosotros5.jpeg" alt="Recuerdo 5">
                     </div>
                 </div>
             </div>
@@ -336,7 +342,7 @@
 
     </div>
 
-    <!-- Script interactivo: Cada vez que toque la pantalla o mueva el dedo en el iPhone, salen corazones flotantes -->
+    <!-- Script interactivo para los corazones al tocar la pantalla -->
     <script>
         const symbols = ['❤️', '💖', '🤍', '✨', '💕', '💗'];
 
@@ -355,12 +361,10 @@
             }, 1000);
         }
 
-        // Detecta clics en computadora
         window.addEventListener('click', (e) => {
             createTouchHeart(e.clientX, e.clientY);
         });
 
-        // Detecta toques en la pantalla del iPhone de forma fluida
         window.addEventListener('touchstart', (e) => {
             if(e.touches.length > 0) {
                 const touch = e.touches[0];
