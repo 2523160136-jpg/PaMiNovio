@@ -241,11 +241,13 @@
             grid-column: 1 / -1;
         }
 
-        .media-slot.video-slot {
-            aspect-ratio: auto;
-            min-height: 300px;
-            flex: 1;
-            margin: 0;
+       .media-slot.video-slot {
+            aspect-ratio: 9 / 16;
+            max-width: 320px;
+            max-height: 480px;
+            margin: 0 auto;
+            flex: unset;
+            width: 100%;
             grid-column: auto;
         }
 
