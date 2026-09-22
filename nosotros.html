@@ -238,7 +238,7 @@
             transform: scale(1.06);
         }
 
-        /* ESTILOS PARA EL BOTÓN "TÓCAME" Y LA CARTITA DESPLEGABLE */
+        /* ESTILOS PARA EL BOTÓN Y EL MENSAJE FLOTANTE A UN LADO */
         .tocame-btn {
             background: var(--primary-pink);
             color: white;
@@ -257,25 +257,36 @@
             background: #d81b60;
         }
 
-        .secret-card {
-            display: none;
-            background: #fff0f3;
-            padding: 15px;
-            border-top: 2px dashed var(--primary-pink);
-            font-family: 'Caveat', cursive;
-            font-size: 1.3rem;
-            color: #880e4f;
-            text-align: center;
-            animation: fadeIn 0.4s ease;
+        /* Contenedor relativo para posicionar el mensaje a un lado de la foto */
+        .media-slot-wrapper {
+            position: relative;
         }
 
-        .secret-card.show {
+        .floating-message {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 105%; /* Se despliega al lado derecho de la foto */
+            width: 220px;
+            background: #ffffff;
+            border: 2px solid var(--primary-pink);
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #880e4f;
+            z-index: 100;
+            animation: fadeInSide 0.3s ease;
+        }
+
+        .floating-message.show {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInSide {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .footer-message {
@@ -287,11 +298,18 @@
             text-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
         }
 
-        @media (max-width: 600px) {
+        /* Adaptabilidad para celulares (en pantalla pequeña el mensaje sale abajo o flotando centrado para que no se corte) */
+        @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .hero-header h1 { font-size: 3.2rem; }
             .music-widget { width: 100%; justify-content: center; }
             .top-bar { justify-content: center; }
+            
+            .floating-message {
+                left: 0;
+                top: 105%;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -333,21 +351,26 @@
                 <p class="memory-quote">"No importa el lugar ni el momento, lo único que sé es que a tu lado todo es perfecto y me haces sumamente feliz."</p>
                 
                 <div class="media-grid-modern">
-                    <div class="media-slot">
-                        <div style="flex: 1; overflow: hidden;">
-                            <img src="images/nosotros1.jpeg" alt="Recuerdo 1">
+                    <div class="media-slot-wrapper">
+                        <div class="media-slot">
+                            <div style="flex: 1; overflow: hidden;">
+                                <img src="images/nosotros1.jpeg" alt="Recuerdo 1">
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msg1')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('card1')">Tócame 💌</button>
-                        <div id="card1" class="secret-card">
+                        <div id="msg1" class="floating-message">
                             "Este día me encantó porque nos reímos muchísimo y la pasé genial a tu lado."
                         </div>
                     </div>
-                    <div class="media-slot">
-                        <div style="flex: 1; overflow: hidden;">
-                            <img src="images/nosotros2.jpeg" alt="Recuerdo 2">
+
+                    <div class="media-slot-wrapper">
+                        <div class="media-slot">
+                            <div style="flex: 1; overflow: hidden;">
+                                <img src="images/nosotros2.jpeg" alt="Recuerdo 2">
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msg2')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('card2')">Tócame 💌</button>
-                        <div id="card2" class="secret-card">
+                        <div id="msg2" class="floating-message">
                             "Guardé esta foto porque tu sonrisa ilumina todo mi día."
                         </div>
                     </div>
@@ -363,15 +386,17 @@
                 <p class="memory-quote">"De esos videitos que veo una y otra vez porque me transmiten toda la paz y la alegría del mundo."</p>
                 
                 <div class="media-grid-modern">
-                    <div class="media-slot video-slot">
-                        <div style="width: 100%;">
-                            <video controls autoplay muted loop playsinline style="width: 100%; display: block;">
-                                <source src="images/video_nosotros.mp4" type="video/mp4">
-                                Tu navegador no soporta videos.
-                            </video>
+                    <div class="media-slot-wrapper" style="grid-column: 1 / -1;">
+                        <div class="media-slot video-slot">
+                            <div style="width: 100%;">
+                                <video controls autoplay muted loop playsinline style="width: 100%; display: block;">
+                                    <source src="images/video_nosotros.mp4" type="video/mp4">
+                                    Tu navegador no soporta videos.
+                                </video>
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msgVideo')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('cardVideo')">Tócame 💌</button>
-                        <div id="cardVideo" class="secret-card">
+                        <div id="msgVideo" class="floating-message">
                             "Ver este video me recuerda lo bonito que es coincidir contigo en esta vida."
                         </div>
                     </div>
@@ -387,30 +412,38 @@
                 <p class="memory-quote">"Gracias por tus abrazos, por tus risas y por ser esa persona especial con la que quiero compartir todo."</p>
                 
                 <div class="media-grid-modern">
-                    <div class="media-slot">
-                        <div style="flex: 1; overflow: hidden;">
-                            <img src="images/nosotros3.jpeg" alt="Recuerdo 3">
+                    <div class="media-slot-wrapper">
+                        <div class="media-slot">
+                            <div style="flex: 1; overflow: hidden;">
+                                <img src="images/nosotros3.jpeg" alt="Recuerdo 3">
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msg3')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('card3')">Tócame 💌</button>
-                        <div id="card3" class="secret-card">
+                        <div id="msg3" class="floating-message">
                             "Un momento súper especial que se quedó grabado en mi corazón para siempre."
                         </div>
                     </div>
-                    <div class="media-slot">
-                        <div style="flex: 1; overflow: hidden;">
-                            <img src="images/nosotros4.jpeg" alt="Recuerdo 4">
+
+                    <div class="media-slot-wrapper">
+                        <div class="media-slot">
+                            <div style="flex: 1; overflow: hidden;">
+                                <img src="images/nosotros4.jpeg" alt="Recuerdo 4">
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msg4')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('card4')">Tócame 💌</button>
-                        <div id="card4" class="secret-card">
+                        <div id="msg4" class="floating-message">
                             "Cada segundo contigo es un regalo maravilloso, te amo muchísimo."
                         </div>
                     </div>
-                    <div class="media-slot">
-                        <div style="flex: 1; overflow: hidden;">
-                            <img src="images/nosotros5.jpeg" alt="Recuerdo 5">
+
+                    <div class="media-slot-wrapper">
+                        <div class="media-slot">
+                            <div style="flex: 1; overflow: hidden;">
+                                <img src="images/nosotros5.jpeg" alt="Recuerdo 5">
+                            </div>
+                            <button class="tocame-btn" onclick="toggleMessage('msg5')">Tócame 💌</button>
                         </div>
-                        <button class="tocame-btn" onclick="toggleCard('card5')">Tócame 💌</button>
-                        <div id="card5" class="secret-card">
+                        <div id="msg5" class="floating-message">
                             "Contigo quiero vivir mil aventuras más y seguir coleccionando recuerdos."
                         </div>
                     </div>
@@ -426,7 +459,7 @@
 
     </div>
 
-    <!-- Script para generar corazones flotantes automáticos de fondo y desplegar cartitas -->
+    <!-- Script para los corazones y el despliegue del mensaje a un lado -->
     <script>
         function spawnFloatingHeart() {
             const heart = document.createElement('div');
@@ -450,10 +483,14 @@
 
         setInterval(spawnFloatingHeart, 350);
 
-        // Función para desplegar u ocultar la cartita de cada foto
-        function toggleCard(cardId) {
-            const card = document.getElementById(cardId);
-            card.classList.toggle('show');
+        // Función para mostrar u ocultar el mensaje flotante a un lado
+        function toggleMessage(msgId) {
+            const msg = document.getElementById(msgId);
+            // Cierra otros mensajes abiertos si deseas que solo uno esté visible a la vez
+            document.querySelectorAll('.floating-message').forEach(m => {
+                if(m.id !== msgId) m.classList.remove('show');
+            });
+            msg.classList.toggle('show');
         }
     </script>
 </body>
