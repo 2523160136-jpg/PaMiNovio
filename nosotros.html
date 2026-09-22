@@ -220,12 +220,6 @@
             flex-direction: column;
         }
 
-        .media-slot.video-slot {
-            aspect-ratio: 16 / 9; /* Esto le da una proporción rectangular de video estándar */
-            min-height: 280px;    /* Cambia este valor (ej. 320px o 350px) para hacerlo más alto */
-            grid-column: 1 / -1;
-        }
-
         .media-slot img, 
         .media-slot video {
             width: 100%;
@@ -239,7 +233,46 @@
             transform: scale(1.06);
         }
 
-        /* ESTILOS PARA EL BOTÓN Y EL MENSAJE FLOTANTE A UN LADO */
+        /* ESTILOS ESPECÍFICOS PARA EL CONTENEDOR DEL VIDEO (MÁS ALTO Y CON BOTÓN A UN LADO) */
+        .video-container-flex {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            grid-column: 1 / -1;
+        }
+
+        .media-slot.video-slot {
+            aspect-ratio: auto;
+            min-height: 300px;
+            flex: 1;
+            margin: 0;
+            grid-column: auto;
+        }
+
+        .tocame-video-btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.2);
+            writing-mode: vertical-lr; /* Pone el texto vertical de lado de manera estética */
+            transform: rotate(180deg);
+        }
+
+        .tocame-video-btn:hover {
+            background: #d81b60;
+        }
+
+        /* ESTILOS PARA EL BOTÓN Y EL MENSAJE FLOTANTE EN FOTOS */
         .tocame-btn {
             background: var(--primary-pink);
             color: white;
@@ -258,7 +291,6 @@
             background: #d81b60;
         }
 
-        /* Contenedor relativo para posicionar el mensaje a un lado de la foto */
         .media-slot-wrapper {
             position: relative;
         }
@@ -267,7 +299,7 @@
             display: none;
             position: absolute;
             top: 0;
-            left: 105%; /* Se despliega al lado derecho de la foto */
+            left: 105%;
             width: 220px;
             background: #ffffff;
             border: 2px solid var(--primary-pink);
@@ -299,13 +331,22 @@
             text-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
         }
 
-        /* Adaptabilidad para celulares (en pantalla pequeña el mensaje sale abajo o flotando centrado para que no se corte) */
         @media (max-width: 768px) {
             body { padding: 15px 10px; }
             .hero-header h1 { font-size: 3.2rem; }
             .music-widget { width: 100%; justify-content: center; }
             .top-bar { justify-content: center; }
             
+            .video-container-flex {
+                flex-direction: column;
+            }
+            .tocame-video-btn {
+                writing-mode: horizontal-tb;
+                transform: none;
+                padding: 12px;
+                width: 100%;
+            }
+
             .floating-message {
                 left: 0;
                 top: 105%;
@@ -378,7 +419,7 @@
                 </div>
             </div>
 
-            <!-- Recuerdo 2 (Video) -->
+            <!-- Recuerdo 2 (Video ajustado con botón a un lado) -->
             <div class="memory-box">
                 <div class="memory-info">
                     <span class="memory-label">🎥 Un cachito de nosotros</span>
@@ -388,14 +429,14 @@
                 
                 <div class="media-grid-modern">
                     <div class="media-slot-wrapper" style="grid-column: 1 / -1;">
-                        <div class="media-slot video-slot">
-                            <div style="width: 100%;">
-                                <video controls autoplay muted loop playsinline style="width: 100%; display: block;">
+                        <div class="video-container-flex">
+                            <div class="media-slot video-slot">
+                                <video controls autoplay muted loop playsinline style="width: 100%; height: 100%; display: block;">
                                     <source src="images/video_nosotros.mp4" type="video/mp4">
                                     Tu navegador no soporta videos.
                                 </video>
                             </div>
-                            <button class="tocame-btn" onclick="toggleMessage('msgVideo')">Tócame 💌</button>
+                            <button class="tocame-video-btn" onclick="toggleMessage('msgVideo')">Tócame 💌</button>
                         </div>
                         <div id="msgVideo" class="floating-message">
                             "Ver este video me recuerda lo bonito que es coincidir contigo en esta vida."
@@ -484,10 +525,8 @@
 
         setInterval(spawnFloatingHeart, 350);
 
-        // Función para mostrar u ocultar el mensaje flotante a un lado
         function toggleMessage(msgId) {
             const msg = document.getElementById(msgId);
-            // Cierra otros mensajes abiertos si deseas que solo uno esté visible a la vez
             document.querySelectorAll('.floating-message').forEach(m => {
                 if(m.id !== msgId) m.classList.remove('show');
             });
