@@ -33,27 +33,33 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
-            cursor: pointer;
         }
 
-        /* EFECTO DE CORAZONES AL TOCAR LA PANTALLA */
-        .touch-heart {
+        /* CORAZONES FLOTANTES AUTOMÁTICOS DE FONDO */
+        .floating-heart {
             position: fixed;
-            font-size: 2rem;
+            bottom: -50px;
+            font-size: 1.8rem;
             user-select: none;
             pointer-events: none;
-            z-index: 99999;
-            animation: burstHeart 1s ease-out forwards;
-            filter: drop-shadow(0 2px 8px rgba(233, 30, 99, 0.4));
+            z-index: 9999;
+            animation: floatUpAnimation 5s linear forwards;
+            filter: drop-shadow(0 2px 6px rgba(233, 30, 99, 0.3));
         }
 
-        @keyframes burstHeart {
+        @keyframes floatUpAnimation {
             0% {
-                transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
-                opacity: 1;
+                transform: translateY(0) scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.9;
             }
             100% {
-                transform: translate(-50%, -120px) scale(1.4) rotate(25deg);
+                transform: translateY(-110vh) scale(1.3) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -270,7 +276,7 @@
         <!-- Encabezado Estético -->
         <header class="hero-header">
             <h1>Fotitos de nosotros 🤍</h1>
-            <p>Toca cualquier parte de la pantalla para ver la magia ✨</p>
+            <p>Cada instante a tu lado se convierte en mi recuerdo favorito.</p>
         </header>
 
         <!-- Bloques de Recuerdos -->
@@ -312,7 +318,7 @@
                 </div>
             </div>
 
-            <!-- Recuerdo 3: Actualizado con 3 imágenes -->
+            <!-- Recuerdo 3: Las 3 imágenes -->
             <div class="memory-box">
                 <div class="memory-info">
                     <span class="memory-label">💖 Amor del bueno</span>
@@ -342,35 +348,30 @@
 
     </div>
 
-    <!-- Script interactivo para los corazones al tocar la pantalla -->
+    <!-- Script para generar corazones flotantes automáticos de fondo -->
     <script>
-        const symbols = ['❤️', '💖', '🤍', '✨', '💕', '💗'];
-
-        function createTouchHeart(x, y) {
+        function spawnFloatingHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('touch-heart');
+            heart.classList.add('floating-heart');
+            
+            const symbols = ['❤️', '💖', '🤍', '✨', '💕', '💗'];
             heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
             
-            heart.style.left = x + 'px';
-            heart.style.top = y + 'px';
+            heart.style.left = Math.random() * 95 + 'vw';
+            heart.style.fontSize = (Math.random() * 1.2 + 1) + 'rem';
+            
+            const duration = Math.random() * 3 + 4;
+            heart.style.animationDuration = duration + 's';
             
             document.body.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
-            }, 1000);
+            }, duration * 1000);
         }
 
-        window.addEventListener('click', (e) => {
-            createTouchHeart(e.clientX, e.clientY);
-        });
-
-        window.addEventListener('touchstart', (e) => {
-            if(e.touches.length > 0) {
-                const touch = e.touches[0];
-                createTouchHeart(touch.clientX, touch.clientY);
-            }
-        }, { passive: true });
+        // Lanza un nuevo corazoncito continuamente mientras estés en la página
+        setInterval(spawnFloatingHeart, 350);
     </script>
 </body>
 </html>
