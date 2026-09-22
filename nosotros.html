@@ -533,5 +533,14 @@
             msg.classList.toggle('show');
         }
     </script>
+    <script>
+    // Reproduce la música automáticamente al primer toque o clic del usuario en la página
+    document.addEventListener('click', function() {
+        const audio = document.querySelector('audio');
+        if (audio && audio.paused) {
+            audio.play().catch(e => console.log("Audio play prevented"));
+        }
+    }, { once: true }); // Se ejecuta solo una vez al entrar
+</script>
 </body>
 </html>
