@@ -221,7 +221,8 @@
         }
 
         .media-slot.video-slot {
-            aspect-ratio: auto;
+            aspect-ratio: 16 / 9; /* Esto le da una proporción rectangular de video estándar */
+            min-height: 280px;    /* Cambia este valor (ej. 320px o 350px) para hacerlo más alto */
             grid-column: 1 / -1;
         }
 
